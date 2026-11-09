@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+app/photovault.db
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+.env

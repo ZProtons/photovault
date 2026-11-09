@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}My Gallery{% endblock %}
+{% block content %}
+  <h1>My gallery</h1>
+  <ul class="photo-list">
+    {% for p in photos %}
+      <li>
+        <img src="{{ url_for('static', filename='uploads/' + p['filename']) }}" alt="{{ p['caption'] }}">
+        <p>{{ p['caption'] }}{% if p['is_private'] %} <span class="badge">private</span>{% endif %}</p>
+        <p class="meta">filename: {{ p['filename'] }} &middot; id {{ p['id'] }}</p>
+        <form method="post" action="{{ url_for('delete_photo', photo_id=p['id']) }}">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No photos yet. <a href="{{ url_for('upload') }}">Upload one</a>.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

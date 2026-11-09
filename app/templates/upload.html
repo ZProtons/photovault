@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Upload{% endblock %}
+{% block content %}
+  <h1>Upload a photo</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post" enctype="multipart/form-data">
+    <label>Photo <input type="file" name="photo"></label>
+    <label>Caption <input type="text" name="caption"></label>
+    <label class="checkbox"><input type="checkbox" name="private"> Private</label>
+    <button type="submit">Upload</button>
+  </form>
+{% endblock %}

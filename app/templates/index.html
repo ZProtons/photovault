@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}PhotoVault{% endblock %}
+{% block content %}
+  <h1>PhotoVault</h1>
+  <p>A small, deliberately vulnerable photo gallery app for practicing file
+  upload exploitation. A few bugs are hidden in here on purpose.</p>
+  {% if not user %}
+    <p>Try logging in as <code>alice</code> / <code>alice123</code> or
+    <code>bob</code> / <code>hunter2</code>.</p>
+    <p><a href="{{ url_for('login') }}">Log in</a></p>
+  {% endif %}
+  <h2>Public photos</h2>
+  <ul class="photo-list">
+    {% for p in photos %}
+      <li>
+        <img src="{{ url_for('static', filename='uploads/' + p['filename']) }}" alt="{{ p['caption'] }}">
+        <p>{{ p['caption'] }} &mdash; by {{ p['username'] }}</p>
+      </li>
+    {% else %}
+      <li>No public photos yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
